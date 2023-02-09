@@ -1,17 +1,18 @@
-using System;
-
+//This example implements an interface IExample with three properties: Property1 is type int, Property2 is type string, and Property3 is type DateTime.
+//The class Example implements the interface IExample and shows an implementation for the properties defined in the interface.
+//In the Main method, I created an instance of Example and have given values to its properties, which are printed to the console.
 interface IExample
 {
-    int Property1 { get; set; }
-    string Property2 { get; set; }
-    DateTime Property3 { get; set; }
+    int Prop1 { get; set; }
+    string Prop2 { get; set; }
+    DateTime Prop3 { get; set; }
 }
 
 class Example : IExample
 {
-    public int Property1 { get; set; }
-    public string Property2 { get; set; }
-    public DateTime Property3 { get; set; }
+    public int Prop1 { get; set; }
+    public string Prop2 { get; set; }
+    public DateTime Prop3 { get; set; }
 }
 
 class Program
@@ -20,14 +21,14 @@ class Program
     {
         Example example = new Example
         {
-            Property1 = 42,
-            Property2 = "Hello, world!",
-            Property3 = DateTime.Now
+            Prop1 = 42,
+            Prop2 = "Hello, world!",
+            Prop3 = DateTime.Now
         };
 
-        Console.WriteLine("Property1: " + example.Property1);
-        Console.WriteLine("Property2: " + example.Property2);
-        Console.WriteLine("Property3: " + example.Property3);
+        Console.WriteLine("Prop1: " + example.Prop1);
+        Console.WriteLine("Prop2: " + example.Prop2);
+        Console.WriteLine("Prop3: " + example.Prop3);
     }
 }
 
