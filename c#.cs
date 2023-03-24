@@ -1,38 +1,88 @@
-using System;
-//This example implements an interface IExample with three properties: Property1 is type int, Property2 is type string, and Property3 is type DateTime.
-//The class Example implements the interface IExample and shows an implementation for the properties defined in the interface.
-//In the Main method, I created an instance of Example and have given values to its properties, which are printed to the console.
+using System; 
 
-namespace Test
+namespace ConsoleApp
 {
-    interface IExample
+    // Defines an interface with various features
+    interface IMyInterface
     {
-        int Prop1 { get; set; }
-        string Prop2 { get; set; }
-        DateTime Prop3 { get; set; }
+        // Instance method
+        void DoSomething();
+
+        // Property with getter and setter
+        string MyString { get; set; }
+
+        // Read-only property
+        int MyInt { get; }
+
+        // Event with a delegate
+        event EventHandler MyEvent;
+
+        // Indexer
+        int this[int index] { get; set; }
     }
 
-    class Example : IExample
+    // Defines a class that implements the interface
+    class MyClass : IMyInterface
     {
-        public int Prop1 { get; set; }
-        public string Prop2 { get; set; }
-        public DateTime Prop3 { get; set; }
+        private string _myString;
+        private int[] _myArray;
+
+        // Implementation of the instance method from the interface
+        public void DoSomething()
+        {
+            Console.WriteLine("Doing something...");
+        }
+
+        // Implementation of the property with getter and setter from the interface
+        public string MyString
+        {
+            get { return _myString; }
+            set { _myString = value; }
+        }
+
+        // Implementation of the read-only property from the interface
+        public int MyInt { get; } = 42;
+
+        // Implementation of the event with a delegate from the interface
+        public event EventHandler MyEvent;
+
+        // Implementation of the indexer from the interface
+        public int this[int index]
+        {
+            get { return _myArray[index]; }
+            set { _myArray[index] = value; }
+        }
+
+        // Constructor to initialize the private array
+        public MyClass()
+        {
+            _myArray = new int[10];
+        }
     }
 
     class Program
     {
         static void Main(string[] args)
         {
-            Example example = new Example
-            {
-                Prop1 = 42,
-                Prop2 = "Hello, world!",
-                Prop3 = DateTime.Now
-            };
-            Console.WriteLine("Prop1: " + example.Prop1);
-            Console.WriteLine("Prop2: " + example.Prop2);
-            Console.WriteLine("Prop3: " + example.Prop3);
+            // Create an instance of MyClass
+            MyClass myObj = new MyClass();
+
+            // Call the DoSomething method from the interface
+            myObj.DoSomething();
+
+            // Set and get the value of the MyString property from the interface
+            myObj.MyString = "Hello, world!";
+            Console.WriteLine(myObj.MyString);
+
+            // Read the value of the MyInt property from the interface
+            Console.WriteLine(myObj.MyInt);
+
+            // Subscribe to the MyEvent event from the interface
+            myObj.MyEvent += (sender, e) => Console.WriteLine("Event fired!");
+
+            // Set and get values using the indexer from the interface
+            myObj[0] = 10;
+            Console.WriteLine(myObj[0]);
         }
     }
 }
-
